@@ -12,7 +12,6 @@ def cos_distances(descriptorM: np.ndarray,
     descriptorN = np.atleast_2d(descriptorN)
 
     # normalize vectors
-    print(descriptorM.shape, descriptorN.shape)
     descriptorM_norm = descriptorM / np.linalg.norm(descriptorM, axis=1, keepdims=True)
     descriptorN_norm = descriptorN / np.linalg.norm(descriptorN, axis=1, keepdims=True)
 
@@ -51,11 +50,12 @@ def create_adj_matrix(descriptors):
     for row in range(len(descriptors)):
         for col in range(len(descriptors)):
             distance = cos_distances(descriptors[row], descriptors[col]) #This "should" return an np.array with one element
-            adj_matrix[row, col] = 1/(distance[0,0])
+            if distance[0,0] != 0:
+                adj_matrix[row, col] = 1/(distance[0,0]**2)
             
             #add functionality so the exact same images arent read as the 0 cos distances
             if (row == col):
-                adj_matrix[row, col] = 0.0
+                adj_matrix[row, col] = 2.0
     
     #return the final weighted matrix
     return adj_matrix

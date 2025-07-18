@@ -39,7 +39,7 @@ def propagate_label(node, node_neighbors, adj_matrix):
         best_label = max(weights.items(), key=lambda x: x[1])[0]
         node.label = best_label
 
-def whispers(nodes, adj_matrix, threshold, iterations = 100):
+def whispers(nodes, adj_matrix, threshold, iterations = 50):
     num_components = []
 
     for node in nodes:
@@ -56,7 +56,7 @@ def whispers(nodes, adj_matrix, threshold, iterations = 100):
         propagate_label(node, neighbors_node, adj_matrix)
         components = connected_components(nodes)
         num_components.append(len(components))
-
+    
 def plot_graph(graph, adj):
     """ Use the package networkx to produce a diagrammatic plot of the graph, with
     the nodes in the graph colored according to their current labels.
