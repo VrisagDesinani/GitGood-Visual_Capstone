@@ -53,7 +53,7 @@ def create_adj_matrix(descriptors):
             distance = cos_distances(descriptors[row], descriptors[col]) #This "should" return an np.array with one element
             adj_matrix[row, col] = 1/(distance[0,0])
             
-            #add functionality so the exact same images arent read as the same
+            #add functionality so the exact same images arent read as the 0 cos distances
             if (row == col):
                 adj_matrix[row, col] = 0.0
     
@@ -105,7 +105,7 @@ def plot_historgram(cos_distances, bins=50):
     cos_distances = array for cos distances (M, N)
     '''
     cos_distances = cos_distances.flatten()
-    plt.hist(cos_distances, bins=bins, color = '', edgecolor = '')
+    plt.hist(cos_distances, bins=bins, color = 'blue', edgecolor = 'black')
     plt.xlabel("cos distance between 2 descriptors")
     plt.ylabel("count")
     plt.grid(axis='y', alpha=0.75)

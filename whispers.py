@@ -42,11 +42,16 @@ def whispers(nodes, adj_matrix, iterations = 100):
 
     for iteration in range(iterations):
         node = random.choice(nodes)
-        neighbors_node = node.neighbors
+        neighbor_tuples = node.get_neighbors()
+
+        neighbors_node = []
+        for i in range(len(neighbor_tuples)):
+            neighbors_node.append(neighbor_tuples[i][0])
+
         propagate_label(node, neighbors_node, adj_matrix)
         components = connected_components(nodes)
         num_components.append(len(components))
-    
+
     
 
     
