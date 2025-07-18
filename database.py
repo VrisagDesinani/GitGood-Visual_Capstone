@@ -4,16 +4,18 @@ class Profile:
     
     def __init__(self, name):
         self.name = name
-        self.descriptors = np.empty()
+        self.descriptors = np.empty((0, 512))
     
     def add_descriptor(self, descriptor):
-        # Shape of each descriptor should be (512,)
-        # We want descriptors to be shape (N, 512)
+        # Shape of descriptors: (N, 512)
+        # Shape of each descriptor: (512,)
         
         self.descriptors = np.vstack([self.descriptors, descriptor])
 
     def get_descriptor_average(self):
-        # our descriptors is a np array already
+        # Returns 0s if there are no descriptors yet, and the average of the descriptors if descriptors is not empty
+        if len(self.descriptors) == 0:
+            return np.zeroes(512)
         return self.descriptors.mean(axis=0)
     
     def get_name(self):
@@ -43,4 +45,3 @@ class Database:
             profile = Profile(name)
             profile.add_descriptor(descriptor)
             self.add_profile(name, profile)
-        
