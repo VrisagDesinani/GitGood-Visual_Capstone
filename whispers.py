@@ -1,5 +1,6 @@
 from collections import defaultdict
 import numpy as np
+import random
 
 def connected_components(list_of_nodes):
     '''
@@ -34,6 +35,19 @@ def propagate_label(node, node_neighbors, adj_matrix):
         best_label = max(weights.items(), key=lambda x: x[1])[0]
         node.label = best_label
 
-def whispers(nodes, adj_matrix):
-    for i in enumerate(nodes):
+def whispers(nodes, adj_matrix, iterations = 100):
+    for i, node in enumerate(nodes):
         node.label = i
+    num_components = []
+
+    for iteration in range(iterations):
+        node = random.choice(nodes)
+        neighbors_node = node.neighbors
+        propagate_label(node, neighbors_node, adj_matrix)
+        components = connected_components(nodes)
+        num_components.append(len(components))
+    
+    
+
+    
+

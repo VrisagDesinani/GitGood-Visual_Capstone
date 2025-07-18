@@ -4,7 +4,7 @@ class Profile:
     
     def __init__(self, name):
         self.name = name
-        self.descriptors = np.empty((0, 512))
+        self.descriptors = None
     
     def add_descriptor(self, descriptor):
         # Shape of descriptors: (N, 512)
