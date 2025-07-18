@@ -9,7 +9,7 @@ def has_match(descriptor, database, threshold):
     Outputs: return a string of the profile
 
     '''
-    means = np.array([profile.get_descriptor_average() for profile in database])    #shape (N,D)
+    means = np.array([profile.get_descriptor_average() for profile in database.values()])    #shape (N,D)
     keys = list(database.keys())
 
     distances = cos_distances(descriptor, means)    #shape (1,N)

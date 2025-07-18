@@ -6,16 +6,18 @@ Threshold = 1.5
 def cos_distances(descriptorM: np.ndarray, 
                   descriptorN: np.ndarray) -> np.ndarray:
 
-    #do we have to check inputs are 2d arrays
-    #normalize vectors
-    descriptorM_norm = descriptorM/np.linalg.norm(descriptorM, axis = 1)
-    descriptorN_norm = descriptorN/np.linalg.norm(descriptorN, axis = 1)
+    # Check that inputs at are 2d
+    descriptorM = np.atleast_2d(descriptorM)
+    descriptorN = np.atleast_2d(descriptorN)
+
+    # normalize vectors
+    print(descriptorM.shape, descriptorN.shape)
+    descriptorM_norm = descriptorM / np.linalg.norm(descriptorM, axis=1, keepdims=True)
+    descriptorN_norm = descriptorN / np.linalg.norm(descriptorN, axis=1, keepdims=True)
 
     #find similarity using dot product 
-    cos_distances = 1.0 - np.dot(descriptorM_norm, descriptorN_norm.T)
-
-    return cos_distances
-
+    return 1.0 - np.dot(descriptorM_norm, descriptorN_norm.T)
+"""
 class Node:
     def __init__(self, ID, neighbors, descriptor, truth=None, file_path=None):
         self.id = ID
@@ -53,6 +55,6 @@ def compute_neighbors(descriptor, descriptors, adj_matrix):
             index = 
 
 
-
+"""
 
             

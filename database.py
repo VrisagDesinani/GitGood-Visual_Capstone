@@ -8,7 +8,7 @@ class Profile:
     
     def add_descriptor(self, descriptor):
         # Shape of descriptors: (N, 512)
-        # Shape of each descriptor: (512,)
+        # Shape of each descriptor: (512)
         
         self.descriptors = np.vstack([self.descriptors, descriptor])
 
@@ -34,7 +34,7 @@ class Database:
         
     def remove_profile(self, name):
         #removes the profile object by passing in name 
-        del self.db.pop(name)
+        self.db.pop(name)
     
     
     def add_image(self, name, descriptor):
