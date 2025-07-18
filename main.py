@@ -21,8 +21,8 @@ setup_database("Vrisag", "faces/Vrisag.jpg", db)
 
 test_photo = "faces/group_photo.jpg"
 
-bgr_image = cv2.imread(image_filepath)
-rgb_image = cv2.cvtColor(bgr_image, cv2.BGRTORGB)
+bgr_image = cv2.imread(test_photo)
+rgb_image = cv2.cvtColor(bgr_image, cv2.COLOR_)
 
 boxes, probabilities, landmarks = model.detect(rgb_image)
 descriptors = model.compute_descriptors(rgb_image, boxes)

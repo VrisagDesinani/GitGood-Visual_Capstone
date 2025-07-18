@@ -9,7 +9,7 @@ model = FacenetModel()
 def setup_database(name, image_filepath, database):
 
     bgr_image = cv2.imread(image_filepath)
-    rgb_image = cv2.cvtColor(bgr_image, cv2.BGRTORGB)
+    rgb_image = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2RGB)
 
     boxes, probabilities, landmarks = model.detect(rgb_image)
     descriptors = model.compute_descriptors(rgb_image, boxes)

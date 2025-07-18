@@ -4,7 +4,7 @@ class Profile:
     
     def __init__(self, name):
         self.name = name
-        self.descriptors = np.empty((0, 512))
+        self.descriptors = None
     
     def add_descriptor(self, descriptor):
         # Shape of descriptors: (N, 512)
@@ -34,7 +34,7 @@ class Database:
         
     def remove_profile(self, name):
         #removes the profile object by passing in name 
-        del self.db.pop(name)
+        self.db.pop(name)
     
     
     def add_image(self, name, descriptor):
